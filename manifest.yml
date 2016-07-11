@@ -1,0 +1,10 @@
+applications:
+- path: .
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: openfarm-api
+  host: openfarm-api
+  disk_quota: 1024M
+  services:
+  - openfarm-api-cloudantNoSQLDB
