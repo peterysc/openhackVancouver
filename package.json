@@ -6,8 +6,11 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
     "cfenv": "^1.0.3",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "nodemailer": "^2.5.0",
+    "request": "^2.73.0"
   },
   "repository": {},
   "engines": {
