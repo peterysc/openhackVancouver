@@ -13,7 +13,45 @@ var options = {
   }
 };
 
-router.get('/', function (req, res) {
+router.post('/order', function (req, res) {
+    var req = http.request(options, function (res) {
+      var chunks = [];
+
+      res.on("data", function (chunk) {
+        chunks.push(chunk);
+      });
+
+      res.on("end", function () {
+        var body = Buffer.concat(chunks);
+        console.log(body.toString());
+      });
+    });
+
+    req.write(JSON.stringify({ message: 'Your order has been processed', address: 'tel:16042206285' }));
+    req.end();
+    res.sendStatus(200);
+});
+
+router.post('/ship', function (req, res) {
+    var req = http.request(options, function (res) {
+      var chunks = [];
+
+      res.on("data", function (chunk) {
+        chunks.push(chunk);
+      });
+
+      res.on("end", function () {
+        var body = Buffer.concat(chunks);
+        console.log(body.toString());
+      });
+    });
+
+    req.write(JSON.stringify({ message: 'Your order is shipped', address: 'tel:16042206285' }));
+    req.end();
+    res.sendStatus(200);
+});
+
+router.post('/arrive', function (req, res) {
     var req = http.request(options, function (res) {
       var chunks = [];
 
@@ -29,7 +67,7 @@ router.get('/', function (req, res) {
 
     req.write(JSON.stringify({ message: 'Your order has arrived', address: 'tel:16042206285' }));
     req.end();
-    res.send("200 OK");
+    res.sendStatus(200);
 });
 
 module.exports = router;
