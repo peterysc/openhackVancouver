@@ -9,6 +9,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+var path = require('path');
 var session = require('express-session');
 var CloudantStore = require('connect-cloudant')(session);
 // cfenv provides access to your Cloud Foundry environment
@@ -24,6 +25,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
 
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+app.set('views', path.join(__dirname, 'views'));
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
 
@@ -57,12 +61,14 @@ var telus = require('./routes/telus');
 var ordering = require('./routes/ordering');
 var email = require('./routes/email');
 var auth = require('./routes/auth');
+var view = require('./routes/view');
 
 app.use('/catalog', catalog);
 app.use('/telus', telus);
 app.use('/ordering', ordering);
 app.use('/email', email);
 app.use('/auth', auth);
+app.use('/', view);
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
