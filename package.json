@@ -8,8 +8,13 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "cfenv": "^1.0.3",
+    "cloudant": "^1.4.2",
+    "connect-cloudant": "^1.0.6",
     "express": "^4.14.0",
+    "express-session": "^1.14.0",
     "nodemailer": "^2.5.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "request": "^2.73.0"
   },
   "repository": {},
