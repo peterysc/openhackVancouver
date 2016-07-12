@@ -32,12 +32,13 @@
     </div>
     <div id="mid-column text-center" class="col-md-4">
       <h3>SIGN UP</h3>
-      <form action="/register-user">
+      <form action="/auth/signup" method="post">
+
         <div class="form-group">
-          <input id="email" type="text" class="form-control" placeholder="E-mail">
+          <input name="username" id="email" type="text" class="form-control" placeholder="E-mail">
         </div>
         <div class="form-group">
-          <input id="password" type="password" class="form-control" placeholder="Password">
+          <input name="password" id="password" type="password" class="form-control" placeholder="Password">
         </div>
         <button type="submit" class="btn btn-default validate" disabled="">Submit</button>
         
