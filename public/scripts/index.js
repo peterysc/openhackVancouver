@@ -41,17 +41,33 @@ function getAllFruitsProducts(){
 
 function buildHomePage(data){
 	for (var i = 0; i < data.length; i++) {
+
 		var div = document.createElement("div");
 		div.setAttribute("class", "vegpost");
 		div.setAttribute("id", data[i].productNumber);
-		div.setAttribute("onClick", 'catalog/'+data[i].productNumber);
+		// div.setAttribute("onclick", 'catalog/'+data[i].productNumber);
 		var h2 = document.createElement("h2");
-		h2.appendChild(document.createTextNode(data[i].versions[0].name));
+		
+		var a = document.createElement("a");
+		a.appendChild(document.createTextNode(data[i].versions[0].name));
+		// a.setAttribute("href","catalog/"+data[i].productNumber);
+		a.setAttribute("href","product/"+data[i].productNumber);
+		
+		h2.appendChild(a);
+
 		var p = document.createElement("p");
 		p.appendChild(document.createTextNode(data[i].versions[0].description));
+		
+		var aImg = document.createElement("a");
+		// aImg.setAttribute("href","catalog/"+data[i].productNumber);
+		aImg.setAttribute("href","product/"+data[i].productNumber);
+
 		var img = document.createElement("img");
 		img.setAttribute("src",data[i].versions[0].characteristics[7].versions[0].value);
-		div.appendChild(img);
+		// img.setAttribute("href","catalog/"+data[i].productNumber);
+		img.setAttribute("href","product/"+data[i].productNumber);
+		aImg.appendChild(img);
+		div.appendChild(aImg);
 		div.appendChild(h2);
 		div.appendChild(p);
 
@@ -99,3 +115,63 @@ function loadingGif(){
 function removeLoadingGif(){
 	$('#loadingGif').remove();
 }
+
+function isLogged(){
+	$.ajax({
+  		method: 'GET',
+  		dataType: "json",
+  		url: '/cart/email',
+  		error:function(data){
+  			console.log(data.responseText);
+  			if(data.responseText == 'Unauthorized'){
+  				$('#user-auth-div').empty();
+  				var a = document.createElement("a");
+  				a.setAttribute("href", "/signin");
+  				a.setAttribute("style", "color:white;");
+  				a.appendChild(document.createTextNode("Login"));
+  				$('#user-auth-div').append(a);
+  				
+  			}
+  			else{
+  				$('#user-auth-div').empty();
+  				var p = document.createElement("p");
+				p.appendChild(document.createTextNode(data.responseText+'  '));
+				p.setAttribute("style", "margin:0;");
+				p.setAttribute("style", "color:white; display: inline;");
+				var a = document.createElement("a");
+  				a.setAttribute("href", "/auth/logout");
+  				a.appendChild(document.createTextNode("Logout"));
+				$('#user-auth-div').append(p);
+				$('#user-auth-div').append(a);
+  			}
+  		}
+	});
+}
+
+function test(){
+	$.ajax({
+  		method: 'POST',
+  		dataType: "json",
+  		data: JSON.stringify([{"id": awoijdaw , "quantity":oijoiawd , "price": 1209312},{"id": awoijdaw , "quantity":oijoiawd , "price": 1209312}]),
+  		url: '/ordering/placeOrder/',
+  		success:function(data){ 
+  			alert('WORKED!!!!');
+  		}
+	});
+	
+}
+
+// function getURLParameter(sParam){
+
+//     var sPageURL = window.location.search.substring(1);
+//     var sURLVariables = sPageURL.split('&');
+
+//     for (var i = 0; i < sURLVariables.length; i++){
+
+//         var sParameterName = sURLVariables[i].split('=');
+//         if (sParameterName[0] == sParam){
+//             return sParameterName[1];
+//         }
+//     }
+// }​
+

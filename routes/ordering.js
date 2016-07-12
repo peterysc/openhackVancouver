@@ -4,8 +4,6 @@ var router = express.Router();
 const http = require('http');
 
 
-
-
 router.get('/:offerId', function (req, res) {
 var dataToPost = { "createdDate" : "2015-04-20T17:21:28.588Z", "version" : 1, "description" : "Test TMF Order", "requestedCompletionDate" : "2016-07-14T17:21:28.588Z", "relatedParties" : [{ "role" : "Customer", "reference" : "16475551255" } ], "note":[ { "text":"A free text detailing the note" } ], "orderItems" : [{ "item" : { "description" : "Test TMF Order Item", "orderType" : "ProductOfferingOrder", "action" : "Add", "productOffering" : { "id" : offerId }, "product":{ "productCharacteristic":[ { "name":quantityAmount, "value":"Audi" }, { "name":"brand", "value":"Tesla" } ] }, "relatedEntities" : [{ "type" : "CustomerAccount", "name" : "CustomerAccountId", "reference" : "16475551232" }, { "type" : "Place", "name" : "PlaceId", "reference" : "16475551231" } ], "relatedParties" : [{ "role" : "Customer", "reference" : "16475551232" } ], "parentOrderItemId" : null, "relatedScItems" : null } } ], "relatedEntities" : [{ "type" : "CustomerAccount", "name" : "CustomerAccountId", "reference" : "16475551231" }, { "type" : "Place", "name" : "PlaceId", "reference" : "16475551231" } ], "isLocked" : false, "mode" : "INTERACTIVE", "run" : true };
 
