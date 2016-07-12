@@ -21,11 +21,11 @@ app.use(express.static(__dirname + '/public'));
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
-var api = require('./routes/api');
-app.use('/api/', api);
+var catalog = require('./routes/catalog');
+var telus = require('./routes/telus');
 
-var telus = require('./routes/api');
-app.use('/telus', telus);
+app.use('/catalog/', catalog);
+app.use('/telus/', telus);
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {

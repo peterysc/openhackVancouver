@@ -1,19 +1,19 @@
 var express = require('express');
-var request = require('https');
+var http = require("https");
 var router = express.Router();
 
 var options = {
-  "method": "GET",
+  "method": "POST",
   "hostname": "api.eu.apiconnect.ibmcloud.com",
   "port": null,
-  "path": "/chlauusibmcom-tmf-hack/sb/location/getLocation?location=REPLACE_THIS_VALUE&accuracy=REPLACE_THIS_VALUE",
+  "path": "/chlauusibmcom-tmf-hack/sb/sendSms/sendSms",
   "headers": {
     "content-type": "application/json",
     "accept": "application/json"
   }
 };
 
-router.get('/index', function (req, res) {
+router.get('/', function (req, res) {
     var req = http.request(options, function (res) {
       var chunks = [];
 
@@ -27,7 +27,8 @@ router.get('/index', function (req, res) {
       });
     });
 
-    req.end();
+    req.write(JSON.stringify({ message: 'Your order has arrived', address: 'tel:16042206285' }));
+    req.send("200 OK");
 });
 
 module.exports = router;
