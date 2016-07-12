@@ -32,7 +32,6 @@ var appEnv = cfenv.getAppEnv();
 
 // get cloudant
 var cloudant = require('./config/cloudant.js');
-console.log("This is cloudant url" + cloudant.cloudantURL);
 
 //Required setup for passport
 require('./config/passport');
@@ -45,7 +44,7 @@ cloudantStore.on('connect', function() {
 });
 app.use(session({
 	secret: process.env.SESSION_SECRET || 'whenyoufeelitintherainbow',
-    httpOnly: true,
+    httpOnly: false,
     resave: false,
     saveUninitialized: false,
     store: cloudantStore
@@ -57,10 +56,13 @@ var catalog = require('./routes/catalog');
 var telus = require('./routes/telus');
 var ordering = require('./routes/ordering');
 var email = require('./routes/email');
+var auth = require('./routes/auth');
 
 app.use('/catalog', catalog);
 app.use('/telus', telus);
+app.use('/ordering', ordering);
 app.use('/email', email);
+app.use('/auth', auth);
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
