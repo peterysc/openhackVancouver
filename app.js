@@ -23,9 +23,11 @@ var appEnv = cfenv.getAppEnv();
 
 var catalog = require('./routes/catalog');
 var telus = require('./routes/telus');
+var ordering = require('./routes/ordering');
 
 app.use('/catalog/', catalog);
 app.use('/telus/', telus);
+app.use('/ordering/', ordering);
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {

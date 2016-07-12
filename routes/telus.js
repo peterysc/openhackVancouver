@@ -28,7 +28,8 @@ router.get('/', function (req, res) {
     });
 
     req.write(JSON.stringify({ message: 'Your order has arrived', address: 'tel:16042206285' }));
-    req.send("200 OK");
+    req.end();
+    res.send("200 OK");
 });
 
 module.exports = router;
