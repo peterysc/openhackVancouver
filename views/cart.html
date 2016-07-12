@@ -2,7 +2,7 @@
 <html>
 
   <head>
-    <title>Product Page</title>
+    <title>Cart Page</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,19 +33,15 @@
     <div id="left-column" class="col-md-4"></div>
     
     <div id="mid-column" class="col-md-4">
-      <div id="name"></div>
-      <div id="description"></div>
-      <div id="organic" style="max-width: 100px;"></div>
-      <div id="price"></div>
-      <div id="producer"></div>
+      <div><h2>SHOPPING CART</h2></div>
+      <div id="products"></div>
+      <input type="button" class="btn btn-primary text-center" style="width: 100%;" onclick="alert('Order Placed.');">Place Order</input>
     </div>
     
     <div id="right-column" class="col-md-4 margin-top-20">
       <!-- <form action="/ordering/placeOrder" method="POST"> -->
-        <div id="quantity" class="col-md-8">
-          <input id="quantity-product" type="text" value="0" name="quantity-product">
-          <input id="btn-add-to-cart" type="button" class="btn btn-default margin-top-20" value="Add to Cart" onclick="addToCart();" />
-        </div>
+
+          <input id="btn-place-order" type="button" class="btn btn-default margin-top-20" value="Add to Cart" onclick="placeOrder();" /
       <!-- </form> -->
     </div>
 
@@ -60,16 +56,11 @@
     
     $(document ).ready(function() {
 
-        getProductInfo();
+        getCartInfo();
 
         isLogged();
 
-        $("input[name='quantity-product']").TouchSpin({
-          verticalbuttons: true,
-          verticalupclass: 'glyphicon glyphicon-plus',
-          verticaldownclass: 'glyphicon glyphicon-minus',
-          min: 0
-        });
+      
      });
 
       

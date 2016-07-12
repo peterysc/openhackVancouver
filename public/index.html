@@ -10,23 +10,28 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="navbar-header">
-      </div>
-      <!-- <a class="navbar-brand" style="color:#fff" href="#">OPEN FARM</a> -->
-      <p class="navbar-brand" style="color:#fff" href="/">OPEN FARM</p>
-      <!-- 
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-           <form class="navbar-form pull-right">
-              <input type="text" class="span2" placeholder="Login">
-              <input type="text" class="span2" placeholder="Password">
-              <input type="submit" value="Login" class="btn"/>
-            </form>
-        </ul>
-      </div> -->
+    <nav class="navbar navbar-default" style="background-color: #8fb27e ">
+     <div class="container-fluid">
+       <!-- Brand and toggle get grouped for better mobile display -->
+       <div class="navbar-header">
+         <a class="navbar-brand" href="/" style="color:#fff; margin-left:80vh; font-size:30px">OPEN FARM</a>
+       </div>
+
+       <!-- Collect the nav links, forms, and other content for toggling -->
+       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+         <ul class="nav navbar-nav">
+         </ul>
+         <ul class="nav navbar-nav navbar-right">
+            <li><div id="user-auth-div" class="text-center float-right" style="padding: 10px;"> </div><!-- <a href="/signin" style="color:#fff">Log In</a> --></li>
+         </ul>
+         <ul class="nav navbar-nav navbar-right">
+            <li><button id="cart" type="button" class="btn btn-primary text-center float-right glyphicon glyphicon-shopping-cart" style="padding: 10px; border-radius: 3px;">Cart</button><!-- <a href="/signin" style="color:#fff">Log In</a> --></li>
+         </ul>
+       </div><!-- /.navbar-collapse -->
+     </div><!-- /.container-fluid -->
     </nav>
-    <div id="user-auth-div" class="text-center float-right" style="padding: 10px; width: 100px;"><a href="/signin"> Login </a> </div>
+
+    
 
     <ul class="nav nav-tabs">
       <li role="presentation" class="active" id="dairyTab" onclick="clickDairyTab();"> <a>Dairy</a> </li>
@@ -58,6 +63,8 @@
       masonry();
       loadingGif();
       getAllDairyProducts();
+
+      isLogged();
 
     });
   </script>

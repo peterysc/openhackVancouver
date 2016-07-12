@@ -6,7 +6,7 @@ router.get('/', function (req, res, next) {
     res.render('index');
 });
 
-router.get('/product', function (req, res, next) {
+router.get('/product/:id', function (req, res, next) {
     res.render('product');
 });
 
