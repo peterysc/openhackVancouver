@@ -11,6 +11,7 @@ var isLoggedIn = function (req, res, next) {
 
 router.get('/', isLoggedIn, function (req, res) {
     console.log(req.user);
+    res.end();
 });
 
 module.exports = router;

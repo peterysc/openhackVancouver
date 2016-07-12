@@ -62,6 +62,7 @@ var ordering = require('./routes/ordering');
 var email = require('./routes/email');
 var auth = require('./routes/auth');
 var view = require('./routes/view');
+var cart = require('./routes/cart');
 
 app.use('/catalog', catalog);
 app.use('/telus', telus);
@@ -69,6 +70,7 @@ app.use('/ordering', ordering);
 app.use('/email', email);
 app.use('/auth', auth);
 app.use('/', view);
+app.use('/cart', cart);
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {

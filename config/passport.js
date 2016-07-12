@@ -4,11 +4,17 @@ var cloudant = require('../config/cloudant.js');
 var dbAuth = cloudant.dbAuth;
 
 passport.serializeUser(function(user, done) {
-  done(null, user);
+  done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
-  done(null);
+  dbAuth.get(id, function(err, result) {
+    if (!err) {
+      return done(null, result);
+    }
+   
+    return done(null, false);
+  });
 });
 
 // local signup
