@@ -148,3 +148,12 @@ pre {
     margin:0 auto;
     background-color: #8fb27e;
 }
+
+#left-column img{
+	width: 100%;
+	height: 100%;
+}
+
+.margin-top-20 {
+	margin-top: 20px;
+}
