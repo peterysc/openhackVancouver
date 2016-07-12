@@ -25,9 +25,9 @@
     </nav>
 
     <ul class="nav nav-tabs">
-      <li role="presentation" class="active"><a href="#">Dairy</a></li>
-      <li role="presentation"><a href="/about">Fruits</a></li>
-      <li role="presentation"><a href="#">Veggies</a></li>
+      <li role="presentation" class="active" id="dairyTab" onclick="clickDairyTab();"> <a>Dairy</a> </li>
+      <li role="presentation" id="fruitsTab" onclick="clickFruitsTab();"> <a>Fruits</a> </li>
+      <li role="presentation" id="veggiesTab" onclick="clickVeggiesTab();"> <a>Veggies</a> </li>
    </ul>
 
    <div class="section_bg">
@@ -53,8 +53,8 @@
 
       masonry();
 
-      getAllVeggiesProducts();
-      
+      getAllDairyProducts();
+
     });
   </script>
 
