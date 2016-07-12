@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var cloudant = require('../config/cloudant.js');
+var dbAuth = cloudant.dbAuth;
 
 var isLoggedIn = function (req, res, next) {
     if (req.isAuthenticated())
@@ -15,15 +17,26 @@ router.get('/email', isLoggedIn, function (req, res) {
 });
 
 router.get('/', isLoggedIn, function (req, res) {
-    console.log(req.user);
-    res.send(req.user);
-    res.end();
+    dbAuth.get(req.user._id, function(err, result) {
+    		res.setHeader('Content-Type', 'application/json');
+    	 	res.send(JSON.stringify(result.cart));
+         	res.end();
+        });
 });
 
 router.post('/', isLoggedIn, function (req, res) {
-    console.log(req.user);
-    res.send(req.user);
-    res.end();
+	dbAuth.get(req.user._id, function(err, result) {
+			result.cart = req.body;
+			dbAuth.insert(result, result._id, function(err, body, header) {
+			  if (err) {
+			    res.sendStatus('500');
+			    res.end();
+			  } else {
+			  	res.sendStatus('200');
+			  	res.end();
+			  }
+			});
+	    });
 });
 
 module.exports = router;
