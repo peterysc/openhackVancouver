@@ -24,6 +24,9 @@ var appEnv = cfenv.getAppEnv();
 var api = require('./routes/api');
 app.use('/api/', api);
 
+var telus = require('./routes/api');
+app.use('/telus', telus);
+
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
   // print a message when the server starts listening
