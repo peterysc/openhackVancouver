@@ -20,7 +20,7 @@ passport.deserializeUser(function(id, done) {
 // local signup
 passport.use('local-signup', new LocalStrategy(
   function(username, password, done) {
-      dbAuth.insert({ _id: username, password: password, cart: "empty" }, username, function(err, body, header) {
+      dbAuth.insert({ _id: username, password: password, cart: "[]" }, username, function(err, body, header) {
         if (err) {
           return done(null, false);
         }
