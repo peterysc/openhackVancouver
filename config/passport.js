@@ -14,30 +14,22 @@ passport.deserializeUser(function(id, done) {
 // local signup
 passport.use('local-signup', new LocalStrategy(
   function(username, password, done) {
-      dbAuth.insert({ username: username, password: password }, username, function(err, body, header) {
+      dbAuth.insert({ _id: username, password: password }, username, function(err, body, header) {
         if (err) {
-          return console.log(err);
+          return done(null, false);
         }
-   
-        console.log('You have inserted the rabbit.');
-        console.log(body);
         return done(null, body);
       });
-    
   }));
 
 // local login
 passport.use('local-signin', new LocalStrategy(
   function(username, password, done) {
-    dbAuth.find({selector:{username:username}}, function(er, result) {
-      if (er) {
-        return done(err);
+    dbAuth.get(username, function(err, result) {
+      if (!err) {
+        return done(null, result);
       }
      
-      if(result.docs.length == 0) {
-        return done(null, result[0]);
-      } else {
-        return done(null, false);
-      }
+      return done(null, false);
     });
   }));

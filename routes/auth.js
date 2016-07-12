@@ -11,7 +11,7 @@ router.post('/signup', passport.authenticate('local-signup', {
     failureRedirect: '/register-user'
 }));
 
-router.post('/signin', passport.authenticate('local-login', {
+router.post('/signin', passport.authenticate('local-signin', {
     successRedirect: '/',
     failureRedirect: '/register-user'
 }));
