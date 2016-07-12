@@ -44,6 +44,7 @@ function buildHomePage(data){
 		var div = document.createElement("div");
 		div.setAttribute("class", "vegpost");
 		div.setAttribute("id", data[i].productNumber);
+		div.setAttribute("onClick", 'catalog/poOpenFarmMilk'+data[i].productNumber);
 		var h2 = document.createElement("h2");
 		h2.appendChild(document.createTextNode(data[i].versions[0].name));
 		var p = document.createElement("p");
