@@ -7,13 +7,13 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/success',
-    failureRedirect: '/fail'
+    successRedirect: '/',
+    failureRedirect: '/register-user'
 }));
 
 router.post('/signin', passport.authenticate('local-login', {
-    successRedirect: '/success',
-    failureRedirect: '/fail'
+    successRedirect: '/',
+    failureRedirect: '/register-user'
 }));
 
 router.get('/logout', function (req, res, next) {

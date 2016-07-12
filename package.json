@@ -10,6 +10,7 @@
     "cfenv": "^1.0.3",
     "cloudant": "^1.4.2",
     "connect-cloudant": "^1.0.6",
+    "ejs": "^2.4.2",
     "express": "^4.14.0",
     "express-session": "^1.14.0",
     "nodemailer": "^2.5.0",
