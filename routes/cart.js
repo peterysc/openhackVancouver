@@ -9,8 +9,20 @@ var isLoggedIn = function (req, res, next) {
     res.end();
 }
 
+router.get('/email', isLoggedIn, function (req, res) {
+    res.send(req.user._id);
+    res.end();
+});
+
 router.get('/', isLoggedIn, function (req, res) {
     console.log(req.user);
+    res.send(req.user);
+    res.end();
+});
+
+router.post('/', isLoggedIn, function (req, res) {
+    console.log(req.user);
+    res.send(req.user);
     res.end();
 });
 

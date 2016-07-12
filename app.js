@@ -10,8 +10,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var path = require('path');
+var mongoose = require('mongoose');
 var session = require('express-session');
-var CloudantStore = require('connect-cloudant')(session);
+var MongoStore = require('connect-mongo')(session);
 // cfenv provides access to your Cloud Foundry environment
 // for more info, see: https://www.npmjs.com/package/cfenv
 var cfenv = require('cfenv');
@@ -39,19 +40,24 @@ var cloudant = require('./config/cloudant.js');
 
 //Required setup for passport
 require('./config/passport');
-var cloudantStore = new CloudantStore({
-     url: cloudant.cloudantURL, //required
-     databaseName: 'sessions' //optional
+
+//Connect to mongoDB
+var configDB = require('./config/mongodb.js');
+mongoose.connect(configDB.url);
+
+//Check database connection
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+    console.log("Successfully connected to mongoDB");
 });
-cloudantStore.on('connect', function() {
-    console.log("Cloudant Session store is ready for use");
-});
+
 app.use(session({
 	secret: process.env.SESSION_SECRET || 'whenyoufeelitintherainbow',
     httpOnly: false,
     resave: false,
     saveUninitialized: false,
-    store: cloudantStore
+    store: new MongoStore({ mongooseConnection: db })
 }));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
