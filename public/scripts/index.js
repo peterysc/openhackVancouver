@@ -256,11 +256,14 @@ function addToCart(){
   // 		beforeSend: function (xhr) {
   //   		xhr.setRequestHeader ("content-type", "application/json");
 		// },
-  		success:function(){
-  			// alert('worked');
-  		},
-  		error:function(data){
-  			// alert(data.responseText);
+  		// success:function(data){
+  		// 	alert('Added to the cart');
+  		// },
+  		// error:function(data){
+  		// 	alert('Added to the cart');
+  		// },
+  		complete:function(){
+  			alert('Added to the cart');
   		}
 	});
 

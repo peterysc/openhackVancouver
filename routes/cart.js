@@ -34,7 +34,7 @@ router.post('/', isLoggedIn, function (req, res) {
 			  } else {
 			  	// res.sendStatus('200');
 			  	// res.end();
-			  	res.redirect('/');
+			  	res.redirect('/cart-order');
 			  }
 			});
 	    });
