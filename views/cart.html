@@ -24,7 +24,13 @@
          <ul class="nav navbar-nav">
          </ul>
          <ul class="nav navbar-nav navbar-right">
-            <li><div id="user-auth-div" class="text-center float-right" style="padding: 10px;"> </div><!-- <a href="/signin" style="color:#fff">Log In</a> --></li>
+            <li>
+              <div id="user-auth-div" class="text-center float-right" style="padding: 10px;"> </div><!-- <a href="/signin" style="color:#fff">Log In</a> -->
+            </li>
+         </ul>
+         <ul class="nav navbar-nav navbar-right">
+            <li> <a href="/cart-order" style="color: blue"> Cart </a>
+            </li>
          </ul>
        </div><!-- /.navbar-collapse -->
      </div><!-- /.container-fluid -->
@@ -32,20 +38,16 @@
     
     <div id="left-column" class="col-md-4"></div>
     
-    <div id="mid-column" class="col-md-4">
+    <div id="mid-column" class="col-md-4 text-center">
       <div><h2>SHOPPING CART</h2></div>
-      <div id="products"></div>
-      <input type="button" class="btn btn-primary text-center" style="width: 100%;" onclick="alert('Order Placed.');">Place Order</input>
+      <div id="products-list">
+        
+
+      </div>
+
+      <button type="button" class="btn btn-primary text-center" style="width: 100%;" onclick="alert('Order Placed.');"> Place Order </button>
     </div>
     
-    <div id="right-column" class="col-md-4 margin-top-20">
-      <!-- <form action="/ordering/placeOrder" method="POST"> -->
-
-          <input id="btn-place-order" type="button" class="btn btn-default margin-top-20" value="Add to Cart" onclick="placeOrder();" /
-      <!-- </form> -->
-    </div>
-
-
     <script src="/scripts/bootstrap.min.js" type="text/javascript"></script>
     <script src="/scripts/masonry.pkgd.min.js" type="text/javascript"></script>
     <script src="/scripts/jquery.min.js" type="text/javascript"></script>
@@ -60,7 +62,7 @@
 
         isLogged();
 
-      
+             
      });
 
       

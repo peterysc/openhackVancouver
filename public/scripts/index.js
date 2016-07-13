@@ -261,7 +261,15 @@ function getCartInfo(){
   		dataType: "json",
   		url: '/cart/',
   		success:function(data){
-
+  			var p = document.createElement("p");
+  			
+  			p.appendChild(document.createTextNode(data.productName + '   -   ' + data.quantity   +   '   -   ' + data.price));
+  			$('#products-list').append(p);
+  			
+  			var pTotal = document.createElement("p");
+  			pTotal.appendChild(document.createTextNode('TOTAL : ' + (data.quantity * data.price)));
+  			$('#products-list').append(pTotal);
+  			// alert(data);
   		}
 
   	});

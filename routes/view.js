@@ -18,4 +18,8 @@ router.get('/register-user', function (req, res, next) {
     res.render('register-user');
 });
 
+router.get('/cart-order', function (req, res, next) {
+    res.render('cart');
+});
+
 module.exports = router;
