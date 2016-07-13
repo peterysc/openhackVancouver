@@ -3,11 +3,14 @@ var request = require('request');
 var router = express.Router();
 const http = require('http');
 var nodemailer = require('nodemailer');
+//var app = express();
 
 router.post('/placeOrder', function(req,res)
 {
   console.log('hi im here');
   var receivedList = [{'id': 'psOpenFarmOrange' , 'quantity' : '1' , 'price': '7.99'},{'id': 'psOpenFarmMilk' , 'quantity': '3' , 'price': '3.99'},{'id': 'psOpenFarmEgg' , 'quantity': '2' , 'price': '5.00'}];
+ 
+  //var fucktheworld = JSON.parse(body);
 
   var offerId;
   var quantityAmount;
@@ -20,6 +23,10 @@ router.post('/placeOrder', function(req,res)
   var getQuantities = [];
   var getPrice = [];
 
+  //var receivedBody = req.body;
+
+  //var middleTotalPrice = 0;
+  //var realTotalPriceInclusive = 0;
   for (var i=0; i < maxSize; i++)
   {
     console.log(receivedList[i].id);
@@ -72,6 +79,7 @@ var dataToPost = { "createdDate" : "2015-04-20T17:21:28.588Z", "version" : 1, "d
   console.log("Total cost is : $" + realTotalPriceInclusive+ "CAD including 14% tax!");
   request(options, function (error, response, body) 
   {
+  //console.log(body);
     if (!error && response.statusCode == 200) 
     {
 
@@ -85,9 +93,15 @@ var dataToPost = { "createdDate" : "2015-04-20T17:21:28.588Z", "version" : 1, "d
     }
 
     res.send(JSON.stringify(result));
+      
     
+    // res.send(quantityAmount);
+    // res.send(totalPrice);
   });
 });
+/*router.get('/book', function(req,res){
+  res.send('get a random book');
+})*/
 
 router.get('/orderSummary', function (req, res) 
 {
@@ -113,6 +127,9 @@ router.get('/orderSummary', function (req, res)
   for (var i=0; i < maxSize; i++)
   {
     
+    console.log(receivedList[i].id);
+    console.log(receivedList[i].quantity);
+    console.log(receivedList[i].price);
     offerId = receivedList[i].id;
     quantityAmount = parseFloat(receivedList[i].quantity);
     priceEach = parseFloat(receivedList[i].price);
@@ -155,20 +172,50 @@ router.get('/orderSummary', function (req, res)
   }
 
   realTotalPriceInclusive *= 1.14;
+  console.log(realTotalPriceInclusive);
 
   for(var n = 0; n<maxSize; n++)
   {
     console.log((n+1) + ". " + getIds[n]);
     
   }
-  
+  /*var offerId = "psOpenFarmOrange";
+  var quantityAmount = parseInt('5');
+  var priceEach = parseFloat('2.99');*/
+  /*if(quantityAmount > 1)
+  {
+    totalPrice = totalPrice + (quantityAmount*priceEach);
+  }
+  else
+  {
+    totalPrice += priceEach;
+  } */
+  console.log("Total Price : " + realTotalPriceInclusive);
+
+
+
+    /*console.log(offerId);
+    console.log(quantityAmount);
+    console.log(priceEach);*/
+    //console.log("data to post is:" + JSON.stringify(dataToPost));  
+    //var offerId = request.body.produce.id;
+    //var quantityAmount = request.body.produce.quantity;
+    //var priceEach = request.body.produce.price;
+
+
+    //console.log(options);
   request(options, function (error, response, body) 
   {
 
+
+    console.log(body);
+      //console.log(body);
     if (!error && response.statusCode == 200) 
     {  
+      //console.log(body);
     }
     
+    //console.log(body);
     var result = 
     {
       'offerId': getIds,
@@ -180,6 +227,11 @@ router.get('/orderSummary', function (req, res)
     res.send(JSON.stringify(result));
   });
 });
+
+<<<<<<< HEAD
+// create reusable transporter object using the default SMTP transport
+
+// post method for sending the mail with param field content
 
 function sendEmail(result){
       var receivedList = [{'id': 'psOpenFarmMilk' , 'quantity' : '1' , 'price': '7.99'},{'id': 'psOpenFarmOrange' , 'quantity': '3' , 'price': '3.99'},{'id': 'psOpenFarmEgg' , 'quantity': '2' , 'price': '5.00'}];
@@ -267,3 +319,8 @@ transporter.sendMail(options, function(error, info){
 
 
 }
+
+
+=======
+>>>>>>> c1dc9f64375bba064766dbf314051555952f1f8f
+module.exports = router;
