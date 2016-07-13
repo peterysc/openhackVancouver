@@ -175,6 +175,7 @@ function getProductInfo(){
   		url: '/catalog/'+getIdProduct(),
   		success:function(data){
   			buildProductPage(data);
+  			$('#quantity').show();
   		},
   		error:function(data){
   			// alert(data.responseText);
