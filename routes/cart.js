@@ -32,6 +32,8 @@ router.post('/', isLoggedIn, function (req, res) {
 			    res.sendStatus('500');
 			    res.end();
 			  } else {
+			  	// res.sendStatus('200');
+			  	// res.end();
 			  	res.redirect('/');
 			  }
 			});

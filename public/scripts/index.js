@@ -234,18 +234,27 @@ function addToCart(){
 	quantity = $('#quantity-product')[0].value;
 	price = $('#price p')[0].textContent.split(" ")[$('#price p')[0].textContent.split(" ").length-1];
 
-	var jsonCart = [{
+	var jsonCart = {
 		"productId" : productId, 
 	 	"productName": productName,
 	 	"quantity": quantity,
 	 	"price" : price
-	}];
+	};
+
+	console.log(jsonCart);
+	$('#json').value = jsonCart;
+	
+	// $('#myForm').submit();
 
 	$.ajax({
   		method: 'POST',
-  		dataType: "json",
   		url: '/cart/',
-  		data: jsonCart,
+  		data: JSON.stringify(jsonCart),
+  		dataType:"json",
+  		contentType: "application/json; charset=utf-8",
+  // 		beforeSend: function (xhr) {
+  //   		xhr.setRequestHeader ("content-type", "application/json");
+		// },
   		success:function(){
   			// alert('worked');
   		},
